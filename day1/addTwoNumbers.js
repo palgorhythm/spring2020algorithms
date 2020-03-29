@@ -1,4 +1,4 @@
-const { Node } = require('./utils.js');
+const Node = require('../common/Node.js');
 
 module.exports = (a, b) => {
   let outputLength = 0;

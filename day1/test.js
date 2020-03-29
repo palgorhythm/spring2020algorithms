@@ -1,6 +1,8 @@
-const { Node, linkedListToString, logResults } = require('./utils.js');
+const Node = require('../common/Node.js');
 const addTwoNumbers = require('./addTwoNumbers');
 const addTwoNumbersRefactor = require('./addTwoNumbersRefactor.js');
+
+const utils = require('../common/utils.js');
 
 const a = new Node(2);
 a.next = new Node(4);
@@ -15,9 +17,17 @@ expected.next = new Node(0);
 expected.next.next = new Node(8);
 
 // test original implementation
-const result = addTwoNumbers(a, b);
-logResults(expected, result);
+utils.test(
+  [addTwoNumbers, null],
+  utils.compareLinkedLists,
+  [[a, b]],
+  [expected]
+);
 
 // test refactor
-const result2 = addTwoNumbersRefactor(a, b);
-logResults(expected, result2);
+utils.test(
+  [addTwoNumbersRefactor, null],
+  utils.compareLinkedLists,
+  [[a, b]],
+  [expected]
+);
