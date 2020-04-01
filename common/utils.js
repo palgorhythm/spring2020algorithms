@@ -1,30 +1,29 @@
-function test([f, receiver], compareFn, argumentArr, expectedArr) {
+function test(f, compareFn, argumentArr, expectedArr) {
   console.log('---------------TEST----------------');
   if (expectedArr.length !== argumentArr.length) {
     console.log('must supply same number of expected and actual results!');
   }
   for (let i = 0; i < expectedArr.length; i++) {
     let actual;
-    if (receiver !== null) {
-      actual = f.bind(receiver)(...argumentArr[i]);
-    } else {
-      actual = f(...argumentArr[i]);
-    }
+    actual = f(...argumentArr[i]);
     const expected = expectedArr[i];
     const result = compareFn(actual, expected);
+    let fancyHeader;
     let fancyResult;
     if (result === true) {
-      fancyResult = '🥰 T R U E 🥰';
+      fancyHeader = '✅';
+      fancyResult = '✅';
     } else {
-      fancyResult = '🐍 F A L S E 🐍';
+      fancyHeader = '❌';
+      fancyResult = '❌';
     }
-
     console.log(
-      'ACTUAL:',
+      fancyHeader,
+      `[Test ${i}]`,
+      'Actual:',
       actual,
-      'EXPECTED:',
+      'Expected:',
       expected,
-      'SUCCESS:',
       fancyResult
     );
   }

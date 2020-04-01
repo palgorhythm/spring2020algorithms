@@ -6,7 +6,7 @@ class LRUCache {
     this.cache = {};
     this.dll = new DoublyLinkedList();
   }
-  put(key, value) {
+  put = (key, value) => {
     let nodeToMoveToHead;
     if (this.cache.hasOwnProperty(key)) {
       // if it's already in the cache
@@ -23,9 +23,9 @@ class LRUCache {
     }
     this.cache[key] = nodeToMoveToHead;
     this.dll.addToHead(nodeToMoveToHead);
-  }
+  };
 
-  get(key) {
+  get = key => {
     if (this.cache.hasOwnProperty(key)) {
       const valueNode = this.cache[key];
       const nodeToMoveToHead = this.dll.remove(valueNode);
@@ -34,7 +34,7 @@ class LRUCache {
     } else {
       return -1;
     }
-  }
+  };
 }
 
 module.exports = LRUCache;
