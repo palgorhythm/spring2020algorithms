@@ -4,7 +4,7 @@ from typing import List
 
 cwd = os.path.abspath(os.getcwd())
 sys.path.insert(1, cwd + "/commonpython")
-import utils
+import utils  # pylint: disable=fixme, line-too-long, import-error
 
 
 class Solution:
