@@ -78,22 +78,12 @@ const printMatrixDiagonals = (array) => {
 };
 
 const printMatrixDiagonalsBetter = (matrix) => {
-  const n = matrix.length;
-  for (let i = 0; i < n; i++) {
+  const m = matrix.length - 1;
+  for (let i = 0; i <= 2 * m; i++) {
+    let k = i > m ? 2 * m - i : i;
     let curString = '';
-    for (let j = 0; j <= i; j++) {
-      const x = n - 1 - i + j;
-      const y = j;
-      console.log(x, y);
-      curString += matrix[x][y];
-    }
-    console.log(curString);
-  }
-  for (let i = n - 1; i > 0; i--) {
-    let curString = '';
-    for (let j = 0; j < i; j++) {
-      const x = j;
-      const y = n - i + j;
+    for (let j = 0; j <= k; j++) {
+      const [x, y] = [j, m - k + j];
       curString += matrix[x][y];
     }
     console.log(curString);
