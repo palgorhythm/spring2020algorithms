@@ -24,7 +24,7 @@ function compareLinkedLists(a, b) {
 }
 
 function linkedListToString(node) {
-  if (node === null) {
+  if (!(node instanceof Node)) {
     return null;
   }
   let outputString = '';
@@ -51,6 +51,9 @@ const compareNestedArrays = (nestingLevel) => (a, b) => {
 };
 
 function printLinkedList(linkedList) {
+  if (!(linkedList instanceof Node)) {
+    return null;
+  }
   const stringifiedLL = linkedListToString(linkedList.head);
   console.log(stringifiedLL);
 }
@@ -70,6 +73,16 @@ function printLruCache(lruCache) {
   console.log(outputString);
 }
 
+function arrayToLinkedList(arr) {
+  const dummy = new Node();
+  let cur = dummy;
+  for (let i = 0; i < arr.length; i++) {
+    cur.next = new Node(arr[i]);
+    cur = cur.next;
+  }
+  return dummy.next;
+}
+
 module.exports = {
   test,
   compareLinkedLists,
@@ -78,4 +91,5 @@ module.exports = {
   lruCacheToString,
   printLruCache,
   compareNestedArrays,
+  arrayToLinkedList,
 };
