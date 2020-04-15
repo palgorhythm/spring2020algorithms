@@ -4,6 +4,7 @@ function test(f, compareFn, argumentArr, expectedArr, printFn = null) {
   if (expectedArr.length !== argumentArr.length) {
     console.log('must supply same number of expected and actual results!');
   }
+  console.log(`🐥🐥🐥🐥🐥🐥🐥🐥${f.name}🐥🐥🐥🐥🐥🐥🐥🐥`);
   for (let i = 0; i < expectedArr.length; i++) {
     let actual;
     actual = f(...argumentArr[i]);

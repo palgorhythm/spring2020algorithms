@@ -4,7 +4,7 @@ class LRUCache {
     this.capacity = capacity;
   }
 
-  get = key => {
+  get = (key) => {
     if (!this.cache.has(key)) return -1;
 
     const v = this.cache.get(key);
@@ -19,7 +19,7 @@ class LRUCache {
     }
     this.cache.set(key, value);
     if (this.cache.size > this.capacity) {
-      this.cache.delete(this.cache.keys().next().value); // keys().next().value returns first item's key
+      this.cache.delete(this.cache.keys().next().value);
     }
   };
 }

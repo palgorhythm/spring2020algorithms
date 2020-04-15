@@ -4,14 +4,21 @@ class TreeNode {
     this.left = this.right = null;
   }
 
-  static printInOrder = (root) => {
-    if (root === null) {
-      return;
-    } else {
-      root.left !== null ? TreeNode.printInOrder(root.left) : null;
-      console.log(root.val);
-      root.right !== null ? TreeNode.printInOrder(root.right) : null;
-    }
+  static toString = (r) => {
+    let outString = '';
+    const visited = new Set();
+    const recurse = (root) => {
+      if (root === null || visited.has(root.val)) {
+        return '';
+      } else {
+        visited.add(root.val);
+        root.left !== null ? recurse(root.left) : '';
+        outString += (outString === '' ? '' : '=>') + root.val.toString();
+        root.right !== null ? recurse(root.right) : '';
+      }
+    };
+    recurse(r, new Set());
+    return outString;
   };
 
   static print = (root) => {
@@ -49,6 +56,9 @@ class TreeNode {
 
   static arrayToBstLevelOrder = (arr) => {
     // ex: [4, 2, 5, 1, 3, null, null]
+    if (arr.length === 0) {
+      return null;
+    }
     for (let i = 0; i < arr.length; i++) {
       arr[i] = arr[i] === null ? null : new TreeNode(arr[i]);
     }
@@ -60,6 +70,24 @@ class TreeNode {
     }
 
     return arr[0];
+  };
+
+  static arrayToCircularDoublyLinkedList = (arr) => {
+    if (arr.length === 0) {
+      return null;
+    }
+    let curNode = new TreeNode();
+    const dummy = curNode;
+    for (let i = 0; i < arr.length; i++) {
+      const newNode = new TreeNode(arr[i]);
+      curNode.right = newNode;
+      newNode.left = curNode;
+      curNode = newNode;
+    }
+    const head = dummy.right;
+    head.left = curNode;
+    curNode.right = head;
+    return head;
   };
 }
 
@@ -88,5 +116,5 @@ const test = () => {
   ]);
   TreeNode.print(t2);
 };
-test();
+
 module.exports = TreeNode;
