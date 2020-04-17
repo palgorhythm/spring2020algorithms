@@ -106,6 +106,8 @@ const alienOrder = (words) => {
   }
   return topologicalSort(graph, indegrees).join('');
 };
+
+
 const t1 = ['wrt', 'wrf', 'er', 'ett', 'rftt'];
 const e1 = 'wertf';
 

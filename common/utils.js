@@ -1,12 +1,11 @@
 const Node = require('./Node');
 
 function test(f, compareFn, argumentArr, expectedArr, printFn = null) {
-  if (expectedArr.length !== argumentArr.length) {
-    console.log('must supply same number of expected and actual results!');
-  }
+  let numTests = Math.min(argumentArr.length, expectedArr.length);
   console.log(`🐥🐥🐥🐥🐥🐥🐥🐥${f.name}🐥🐥🐥🐥🐥🐥🐥🐥`);
-  for (let i = 0; i < expectedArr.length; i++) {
+  for (let i = 0; i < numTests; i++) {
     let actual;
+    console.log(...argumentArr[i]);
     actual = f(...argumentArr[i]);
     const expected = expectedArr[i];
     const success = compareFn(actual, expected);
