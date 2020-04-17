@@ -5,14 +5,18 @@ function test(f, compareFn, argumentArr, expectedArr, printFn = null) {
   console.log(`🐥🐥🐥🐥🐥🐥🐥🐥${f.name}🐥🐥🐥🐥🐥🐥🐥🐥`);
   for (let i = 0; i < numTests; i++) {
     let actual;
+    console.log(`---------------[Test ${i}]----------------`);
     console.log(...argumentArr[i]);
     actual = f(...argumentArr[i]);
     const expected = expectedArr[i];
     const success = compareFn(actual, expected);
     const emoji = success === true ? '✅' : '❌';
-    console.log(`${emoji}---------------[Test ${i}]----------------${emoji}`);
-    console.log('Actual:', printFn === null ? actual : printFn(actual));
-    console.log('Expect:', printFn === null ? expected : printFn(expected));
+    console.log(emoji, 'Actual:', printFn === null ? actual : printFn(actual));
+    console.log(
+      emoji,
+      'Expect:',
+      printFn === null ? expected : printFn(expected)
+    );
   }
 }
 
